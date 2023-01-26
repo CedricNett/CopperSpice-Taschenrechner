@@ -84,24 +84,42 @@ MainWindow::MainWindow()
 
    connect(pb_1, &QPushButton::clicked, this, &QWidget::close);
 
-      void Calculator::button_equals_clicked() {
+   /*
+   void Calculator::button_equals_clicked()
+   {
       operand2 = display->text().toDouble();
-      if(operation == '+') {
+      if(operation == '+')
+      {
          result = operand1+ operand2;
-      } else if(operation == '-') {
+      } 
+      
+      else if(operation == '-')
+      {
          result = operand1 - operand2;
-      } else if(operation == '*') {
+      }
+      
+      else if(operation == '*')
+      {
          result = operand1 * operand2;
-      } else if(operation == '/') {
-         if(operand2 != 0) {
+      }
+      
+      else if(operation == '/')
+      {
+         if(operand2 != 0)
+         {
                result = operand1 / operand2;
-         } else {
+         }
+
+         else
+         {
                display->setText("Error: Division by 0");
                return;
          }
       }
+
       display->setText(QString::number(result));
    }
+   */
 }
 
 int main(int argc, char *argv[])

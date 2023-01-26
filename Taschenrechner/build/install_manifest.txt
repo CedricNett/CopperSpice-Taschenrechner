@@ -1,0 +1,5 @@
+/home/cedric/CopperSpice/my_own_example/taschenrechner_von_Ced/deploy/./example_1
+/home/cedric/CopperSpice/my_own_example/taschenrechner_von_Ced/deploy/./libCsCore1.7.so
+/home/cedric/CopperSpice/my_own_example/taschenrechner_von_Ced/deploy/./libCsGui1.7.so
+/home/cedric/CopperSpice/my_own_example/taschenrechner_von_Ced/deploy/./platforms/CsGuiXcb1.7.so
+/home/cedric/CopperSpice/my_own_example/taschenrechner_von_Ced/deploy/./libCsXcbSupport1.7.so

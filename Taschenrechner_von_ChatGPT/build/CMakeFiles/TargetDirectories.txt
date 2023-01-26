@@ -1,0 +1,7 @@
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/install/strip.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/install.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/list_install_components.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/rebuild_cache.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/edit_cache.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/install/local.dir
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/build/CMakeFiles/example_1.dir

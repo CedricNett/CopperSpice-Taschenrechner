@@ -1,0 +1,5 @@
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/deploy/./example_1
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/deploy/./libCsCore1.7.so
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/deploy/./libCsGui1.7.so
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/deploy/./platforms/CsGuiXcb1.7.so
+/home/cedric/CopperSpice/my_own_example/ChatGPT_taschenrechner/deploy/./libCsXcbSupport1.7.so

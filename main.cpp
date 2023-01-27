@@ -5,33 +5,43 @@ class MainWindow : public QWidget
 {
    public:
       MainWindow();
+
+   private:
+      double operand1;
+      double operand2;
+      double ergebnis;
+      char operation;
 };
 
 MainWindow::MainWindow()
 {
    setMinimumSize(700, 350);
 
-   QLabel *feld1 = new QLabel("<h3>Eingabe 1:</h3>");
+   //Erstellen der Felder
+   QLabel *feld1 = new QLabel("<h3>Feld 1:</h3>");
 
-   QLineEdit *text_1 = new QLineEdit();
-   text_1->setText("");
-   text_1->setMinimumSize(50, 35);
-   text_1->setEchoMode(QLineEdit::Normal);
+   QLineEdit *eingabe_1 = new QLineEdit();
+   eingabe_1->setText("");
+   eingabe_1->setMinimumSize(50, 35);
+   eingabe_1->setEchoMode(QLineEdit::Normal);
 
-   QLabel *feld2 = new QLabel("<h3>Eingabe 2:</h3>");
+   QLabel *feld2 = new QLabel("<h3>Feld 2:</h3>");
 
-   QLineEdit *text_2 = new QLineEdit();
-   text_2->setText("");
-   text_2->setMinimumSize(50, 35);
-   text_2->setEchoMode(QLineEdit::Normal);
+   QLineEdit *eingabe_2 = new QLineEdit();
+   eingabe_2->setText("");
+   eingabe_2->setMinimumSize(50, 35);
+   eingabe_2->setEchoMode(QLineEdit::Normal);
 
-   QLabel *ausgabe = new QLabel("<h3>Ausgabe</h3>");
+   QLabel *feld3 = new QLabel("<h3>Ergebnis:</h3>");
 
    QLineEdit *text_3 = new QLineEdit();
+   text_3->setMinimumSize(50, 35);
+   text_3->setEchoMode(QLineEdit::Normal);
 
    QPushButton *pb_1 = new QPushButton();
    pb_1->setText("Schließen");
 
+   //Erstellen der Buttons
    QPushButton *pb_2 = new QPushButton();
    pb_2->setText("+");
 
@@ -44,27 +54,32 @@ MainWindow::MainWindow()
    QPushButton *pb_5 = new QPushButton();
    pb_5->setText("÷");
 
-   QVBoxLayout *layout1 = new QVBoxLayout();
+   //Erstellen der Layouts
+   QHBoxLayout *layout1 = new QHBoxLayout();
+   layout1->addStretch();
+   layout1->addSpacing(25);
+   layout1->addWidget(feld1);
+   layout1->addWidget(eingabe_1);
    layout1->addSpacing(75);
-   layout1->addWidget(feld1);layout1->addWidget(text_1);
-   layout1->addSpacing(35);
-   layout1->addWidget(feld2);layout1->addWidget(text_2);
-   layout1->addSpacing(35);
+   layout1->addWidget(feld2);
+   layout1->addWidget(eingabe_2);
+   layout1->addSpacing(25);
+   layout1->addStretch();
 
    QHBoxLayout *layout2 = new QHBoxLayout();
-   layout2->addSpacing(25);
    layout2->addStretch();
-   layout2->addWidget(feld1);
-   layout2->addSpacing(75);
-   layout2->addWidget(feld2);
+   layout2->addWidget(feld3);
+   layout2->addWidget(ergebnis);
    layout2->addStretch();
-   layout2->addSpacing(25);
 
    QHBoxLayout *layout3 = new QHBoxLayout();
    layout3->addStretch();
    layout3->addWidget(pb_2);
+   layout3->addSpacing(5);
    layout3->addWidget(pb_3);
+   layout3->addSpacing(5);
    layout3->addWidget(pb_4);
+   layout3->addSpacing(5);
    layout3->addWidget(pb_5);
    layout3->addStretch();
 
@@ -75,51 +90,54 @@ MainWindow::MainWindow()
 
    QVBoxLayout *layoutMain = new QVBoxLayout(this);
    layoutMain->addLayout(layout1);
-   layoutMain->addSpacing(40);
+   layoutMain->addSpacing(20);
    layoutMain->addLayout(layout2);
    layoutMain->addSpacing(20);
    layoutMain->addLayout(layout3);
    layoutMain->addSpacing(15);
    layoutMain->addLayout(layout4);
 
+   //Verbindung der Buttons
    connect(pb_1, &QPushButton::clicked, this, &QWidget::close);
 
-   /*
-   void Calculator::button_equals_clicked()
+   connect(pb_2, &QPushButton::clicked, this, &operant::operation);
+
+   
+   void Calculator::operation()
    {
       operand2 = display->text().toDouble();
       if(operation == '+')
       {
-         result = operand1+ operand2;
+         ergebnis = operand1+ operand2;
       } 
       
       else if(operation == '-')
       {
-         result = operand1 - operand2;
+         ergebnis = operand1 - operand2;
       }
       
       else if(operation == '*')
       {
-         result = operand1 * operand2;
+         ergebnis = operand1 * operand2;
       }
       
       else if(operation == '/')
       {
          if(operand2 != 0)
          {
-               result = operand1 / operand2;
+               ergebnis = operand1 / operand2;
          }
 
          else
          {
-               display->setText("Error: Division by 0");
+               display->ergebnis("Error: Division by 0");
                return;
          }
       }
 
-      display->setText(QString::number(result));
+      display->ergebnis(QString::number(ergebnis));
    }
-   */
+   
 }
 
 int main(int argc, char *argv[])

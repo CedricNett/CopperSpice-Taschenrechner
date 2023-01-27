@@ -69,7 +69,7 @@ MainWindow::MainWindow()
    QHBoxLayout *layout2 = new QHBoxLayout();
    layout2->addStretch();
    layout2->addWidget(feld3);
-   layout2->addWidget(ergebnis);
+   layout2->addWidget(text_3);
    layout2->addStretch();
 
    QHBoxLayout *layout3 = new QHBoxLayout();
@@ -100,9 +100,9 @@ MainWindow::MainWindow()
    //Verbindung der Buttons
    connect(pb_1, &QPushButton::clicked, this, &QWidget::close);
 
-   connect(pb_2, &QPushButton::clicked, this, &operant::operation);
+   //connect(pb_2, &QPushButton::clicked, this, &operant::operation);
 
-   
+   /*
    void Calculator::operation()
    {
       operand2 = display->text().toDouble();
@@ -137,6 +137,7 @@ MainWindow::MainWindow()
 
       display->ergebnis(QString::number(ergebnis));
    }
+   */
    
 }
 

@@ -51,14 +51,14 @@ private:
     void button_clear_clicked();
     void button_decimal_clicked();
 
-    public:
+public:
     MainWindow();
 };
 
 MainWindow::MainWindow()
 {
     setMinimumSize(700, 350);
-    
+
     display = new QLineEdit("0", this);
     display->setReadOnly(true);
     display->setAlignment(Qt::AlignRight);
@@ -79,9 +79,9 @@ MainWindow::MainWindow()
     button_subtract = new QPushButton("-", this);
     button_multiply = new QPushButton("*", this);
     button_divide = new QPushButton("/", this);
-    button_equals = new QPushButton("=" ,this);
-    button_clear = new QPushButton("Löschen" ,this);
-    button_decimal = new QPushButton("." ,this);
+    button_equals = new QPushButton("=",this);
+    button_clear = new QPushButton("Löschen",this);
+    button_decimal = new QPushButton(".",this);
 
     //Layout der Buttons
     layout = new QGridLayout(this);

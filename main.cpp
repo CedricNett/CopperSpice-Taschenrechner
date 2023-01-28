@@ -274,7 +274,8 @@ void MainWindow::button_equals_clicked()
         if(zahl_2 != 0)
         {
             ergebnis = zahl_1 / zahl_2;
-        } else
+        }
+        else
         {
             display->setText("Ahh! Du sollst nicht durch 0 Teilen! ERROR");
             return;

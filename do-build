@@ -1,5 +1,0 @@
-cd build
-
-ninja install | tee ../error.log
-
-../deploy/example_1

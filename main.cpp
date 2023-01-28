@@ -1,152 +1,304 @@
 #include <QtCore>
 #include <QtGui>
+#include <iostream>
 
 class MainWindow : public QWidget
 {
-   public:
-      MainWindow();
+private:
+    //Anlegen der buttons
+    QLineEdit *display;
+    QGridLayout *layout;
+    QPushButton *button_0;
+    QPushButton *button_1;
+    QPushButton *button_2;
+    QPushButton *button_3;
+    QPushButton *button_4;
+    QPushButton *button_5;
+    QPushButton *button_6;
+    QPushButton *button_7;
+    QPushButton *button_8;
+    QPushButton *button_9;
+    QPushButton *button_add;
+    QPushButton *button_subtract;
+    QPushButton *button_multiply;
+    QPushButton *button_divide;
+    QPushButton *button_equals;
+    QPushButton *button_clear;
+    QPushButton *button_decimal;
 
-   private:
-      double operand1;
-      double operand2;
-      double ergebnis;
-      char operation;
+    //Definition der Zahlen und Operationen
+    double zahl_1;
+    double zahl_2;
+    double ergebnis;
+    char operation;
+
+    //Anlegen der Funktionen
+    void button_0_clicked();
+    void button_1_clicked();
+    void button_2_clicked();
+    void button_3_clicked();
+    void button_4_clicked();
+    void button_5_clicked();
+    void button_6_clicked();
+    void button_7_clicked();
+    void button_8_clicked();
+    void button_9_clicked();
+    void button_add_clicked();
+    void button_subtract_clicked();
+    void button_multiply_clicked();
+    void button_divide_clicked();
+    void button_equals_clicked();
+    void button_clear_clicked();
+    void button_decimal_clicked();
+
+    public:
+    MainWindow();
 };
 
 MainWindow::MainWindow()
 {
-   setMinimumSize(700, 350);
+    setMinimumSize(700, 350);
+    
+    display = new QLineEdit("0", this);
+    display->setReadOnly(true);
+    display->setAlignment(Qt::AlignRight);
+    display->setMaxLength(50);
 
-   //Erstellen der Felder
-   QLabel *feld1 = new QLabel("<h3>Feld 1:</h3>");
+    //Erstellen der Buttons
+    button_0 = new QPushButton("0", this);
+    button_1 = new QPushButton("1", this);
+    button_2 = new QPushButton("2", this);
+    button_3 = new QPushButton("3", this);
+    button_4 = new QPushButton("4", this);
+    button_5 = new QPushButton("5", this);
+    button_6 = new QPushButton("6", this);
+    button_7 = new QPushButton("7", this);
+    button_8 = new QPushButton("8", this);
+    button_9 = new QPushButton("9", this);
+    button_add = new QPushButton("+", this);
+    button_subtract = new QPushButton("-", this);
+    button_multiply = new QPushButton("*", this);
+    button_divide = new QPushButton("/", this);
+    button_equals = new QPushButton("=" ,this);
+    button_clear = new QPushButton("Löschen" ,this);
+    button_decimal = new QPushButton("." ,this);
 
-   QLineEdit *eingabe_1 = new QLineEdit();
-   eingabe_1->setText("");
-   eingabe_1->setMinimumSize(50, 35);
-   eingabe_1->setEchoMode(QLineEdit::Normal);
+    //Layout der Buttons
+    layout = new QGridLayout(this);
+    layout->addWidget(display, 0, 0, 1, 4);
+    layout->addWidget(button_7, 1, 0);
+    layout->addWidget(button_8, 1, 1);
+    layout->addWidget(button_9, 1, 2);
+    layout->addWidget(button_divide, 1, 3);
+    layout->addWidget(button_4, 2, 0);
+    layout->addWidget(button_5, 2, 1);
+    layout->addWidget(button_6, 2, 2);
+    layout->addWidget(button_multiply, 2, 3);
+    layout->addWidget(button_1, 3, 0);
+    layout->addWidget(button_2, 3, 1);
+    layout->addWidget(button_3, 3, 2);
+    layout->addWidget(button_subtract, 3, 3);
+    layout->addWidget(button_0, 4, 0);
+    layout->addWidget(button_decimal, 4, 1);
+    layout->addWidget(button_equals, 4, 2);
+    layout->addWidget(button_add, 4, 3);
+    layout->addWidget(button_clear, 5, 0);
 
-   QLabel *feld2 = new QLabel("<h3>Feld 2:</h3>");
+    setLayout(layout);
 
-   QLineEdit *eingabe_2 = new QLineEdit();
-   eingabe_2->setText("");
-   eingabe_2->setMinimumSize(50, 35);
-   eingabe_2->setEchoMode(QLineEdit::Normal);
+    //Verbinden der Buttons mit ihren Funktionen
+    connect(button_0, &QPushButton::clicked, this, &MainWindow::button_0_clicked);
+    connect(button_1, &QPushButton::clicked, this, &MainWindow::button_1_clicked);
+    connect(button_2, &QPushButton::clicked, this, &MainWindow::button_2_clicked);
+    connect(button_3, &QPushButton::clicked, this, &MainWindow::button_3_clicked);
+    connect(button_4, &QPushButton::clicked, this, &MainWindow::button_4_clicked);
+    connect(button_5, &QPushButton::clicked, this, &MainWindow::button_5_clicked);
+    connect(button_6, &QPushButton::clicked, this, &MainWindow::button_6_clicked);
+    connect(button_7, &QPushButton::clicked, this, &MainWindow::button_7_clicked);
+    connect(button_8, &QPushButton::clicked, this, &MainWindow::button_8_clicked);
+    connect(button_9, &QPushButton::clicked, this, &MainWindow::button_9_clicked);
+    connect(button_decimal, &QPushButton::clicked, this, &MainWindow::button_decimal_clicked);
+    connect(button_add, &QPushButton::clicked, this, &MainWindow::button_add_clicked);
+    connect(button_subtract, &QPushButton::clicked, this, &MainWindow::button_subtract_clicked);
+    connect(button_multiply, &QPushButton::clicked, this, &MainWindow::button_multiply_clicked);
+    connect(button_divide, &QPushButton::clicked, this, &MainWindow::button_divide_clicked);
+    connect(button_equals, &QPushButton::clicked, this, &MainWindow::button_equals_clicked);
+    connect(button_clear, &QPushButton::clicked, this, &MainWindow::button_clear_clicked);
+}
 
-   QLabel *feld3 = new QLabel("<h3>Ergebnis:</h3>");
+//Funktionen der Buttons
+void MainWindow::button_0_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("0");
+}
 
-   QLineEdit *text_3 = new QLineEdit();
-   text_3->setMinimumSize(50, 35);
-   text_3->setEchoMode(QLineEdit::Normal);
+void MainWindow::button_1_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("1");
+}
 
-   QPushButton *pb_1 = new QPushButton();
-   pb_1->setText("Schließen");
+void MainWindow::button_2_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("2");
+}
 
-   //Erstellen der Buttons
-   QPushButton *pb_2 = new QPushButton();
-   pb_2->setText("+");
+void MainWindow::button_3_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("3");
+}
 
-   QPushButton *pb_3 = new QPushButton();
-   pb_3->setText("-");
+void MainWindow::button_4_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("4");
+}
 
-   QPushButton *pb_4 = new QPushButton();
-   pb_4->setText("x");
-   
-   QPushButton *pb_5 = new QPushButton();
-   pb_5->setText("÷");
+void MainWindow::button_5_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("5");
+}
 
-   //Erstellen der Layouts
-   QHBoxLayout *layout1 = new QHBoxLayout();
-   layout1->addStretch();
-   layout1->addSpacing(25);
-   layout1->addWidget(feld1);
-   layout1->addWidget(eingabe_1);
-   layout1->addSpacing(75);
-   layout1->addWidget(feld2);
-   layout1->addWidget(eingabe_2);
-   layout1->addSpacing(25);
-   layout1->addStretch();
+void MainWindow::button_6_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("6");
+}
 
-   QHBoxLayout *layout2 = new QHBoxLayout();
-   layout2->addStretch();
-   layout2->addWidget(feld3);
-   layout2->addWidget(text_3);
-   layout2->addStretch();
+void MainWindow::button_7_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("7");
+}
 
-   QHBoxLayout *layout3 = new QHBoxLayout();
-   layout3->addStretch();
-   layout3->addWidget(pb_2);
-   layout3->addSpacing(5);
-   layout3->addWidget(pb_3);
-   layout3->addSpacing(5);
-   layout3->addWidget(pb_4);
-   layout3->addSpacing(5);
-   layout3->addWidget(pb_5);
-   layout3->addStretch();
+void MainWindow::button_8_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("8");
+}
 
-   QHBoxLayout *layout4 = new QHBoxLayout();
-   layout4->addStretch();
-   layout4->addWidget(pb_1);
-   layout4->addStretch();
+void MainWindow::button_9_clicked()
+{
+    if(display->text() == "0")
+    {
+        display->clear();
+    }
+    display->insert("9");
+}
 
-   QVBoxLayout *layoutMain = new QVBoxLayout(this);
-   layoutMain->addLayout(layout1);
-   layoutMain->addSpacing(20);
-   layoutMain->addLayout(layout2);
-   layoutMain->addSpacing(20);
-   layoutMain->addLayout(layout3);
-   layoutMain->addSpacing(15);
-   layoutMain->addLayout(layout4);
+void MainWindow::button_decimal_clicked()
+{
+    if(!display->text().contains("."))
+    {
+        display->insert(".");
+    }
+}
 
-   //Verbindung der Buttons
-   connect(pb_1, &QPushButton::clicked, this, &QWidget::close);
+void MainWindow::button_add_clicked()
+{
+    zahl_1 = display->text().toDouble();
+    operation = '+';
+    display->clear();
+}
 
-   //connect(pb_2, &QPushButton::clicked, this, &operant::operation);
+void MainWindow::button_subtract_clicked()
+{
+    zahl_1 = display->text().toDouble();
+    operation = '-';
+    display->clear();
+}
 
-   /*
-   void Calculator::operation()
-   {
-      operand2 = display->text().toDouble();
-      if(operation == '+')
-      {
-         ergebnis = operand1+ operand2;
-      } 
-      
-      else if(operation == '-')
-      {
-         ergebnis = operand1 - operand2;
-      }
-      
-      else if(operation == '*')
-      {
-         ergebnis = operand1 * operand2;
-      }
-      
-      else if(operation == '/')
-      {
-         if(operand2 != 0)
-         {
-               ergebnis = operand1 / operand2;
-         }
+void MainWindow::button_multiply_clicked()
+{
+    zahl_1 = display->text().toDouble();
+    operation = '*';
+    display->clear();
+}
 
-         else
-         {
-               display->ergebnis("Error: Division by 0");
-               return;
-         }
-      }
+void MainWindow::button_divide_clicked()
+{
+    zahl_1 = display->text().toDouble();
+    operation = '/';
+    display->clear();
+}
 
-      display->ergebnis(QString::number(ergebnis));
-   }
-   */
-   
+void MainWindow::button_equals_clicked()
+{
+    zahl_2 = display->text().toDouble();
+
+    if(operation == '+')
+    {
+        ergebnis = zahl_1+ zahl_2;
+    }
+    else if(operation == '-')
+    {
+        ergebnis = zahl_1 - zahl_2;
+    }
+    else if(operation == '*')
+    {
+        ergebnis = zahl_1 * zahl_2;
+    }
+    else if(operation == '/')
+    {
+        if(zahl_2 != 0)
+        {
+            ergebnis = zahl_1 / zahl_2;
+        } else
+        {
+            display->setText("Ahh! Du sollst nicht durch 0 Teilen! ERROR");
+            return;
+        }
+    }
+
+    display->setText(QString::number(ergebnis));
+}
+
+void MainWindow::button_clear_clicked()
+{
+    display->clear();
+    display->setText("0");
+    zahl_1 = 0;
+    zahl_2 = 0;
+    ergebnis = 0;
 }
 
 int main(int argc, char *argv[])
 {
-   QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-   MainWindow *window = new MainWindow();
-   window->show();
+    MainWindow *window = new MainWindow();
+    window->show();
 
-   return app.exec();
+    return app.exec();
 }

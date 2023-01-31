@@ -32,7 +32,7 @@ private:
     double ergebnis;
     char operation;
 
-    //Anlegen der Funktionen
+    //Anlegen der Methoden (Funktionen in einer Klasse)
     void button_0_clicked();
     void button_1_clicked();
     void button_2_clicked();
@@ -253,6 +253,7 @@ void MainWindow::button_divide_clicked()
     display->clear();
 }
 
+
 void MainWindow::button_equals_clicked()
 {
     zahl_2 = display->text().toDouble();
@@ -284,6 +285,34 @@ void MainWindow::button_equals_clicked()
 
     display->setText(QString::number(ergebnis));
 }
+
+/*
+void MainWindow::button_equals_clicked()
+{
+    zahl_2 = display->text().toDouble();
+
+    switch (operation)
+    {
+    case '+':
+        ergebnis = zahl_1 + zahl_2;
+        break;
+
+    case '-':
+        ergebnis = zahl_1 - zahl_2;
+        break;
+
+    case '*':
+        ergebnis = zahl_1 * zahl_2;
+        break;
+
+    case '/':
+        ergebnis = zahl_1 / zahl_2;
+        break;
+    }
+
+    display->setText(QString::number(ergebnis));
+}
+*/
 
 void MainWindow::button_clear_clicked()
 {

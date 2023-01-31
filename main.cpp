@@ -85,7 +85,8 @@ MainWindow::MainWindow()
 
     //Layout der Buttons
     layout = new QGridLayout(this);
-    layout->addWidget(display, 0, 0, 1, 4);
+    layout->addWidget(display, 0, 1, 1, 3);
+    layout->addWidget(button_clear, 0, 0);
     layout->addWidget(button_7, 1, 0);
     layout->addWidget(button_8, 1, 1);
     layout->addWidget(button_9, 1, 2);
@@ -102,7 +103,6 @@ MainWindow::MainWindow()
     layout->addWidget(button_decimal, 4, 1);
     layout->addWidget(button_equals, 4, 2);
     layout->addWidget(button_add, 4, 3);
-    layout->addWidget(button_clear, 5, 0);
 
     setLayout(layout);
 
@@ -285,34 +285,6 @@ void MainWindow::button_equals_clicked()
 
     display->setText(QString::number(ergebnis));
 }
-
-/*
-void MainWindow::button_equals_clicked()
-{
-    zahl_2 = display->text().toDouble();
-
-    switch (operation)
-    {
-    case '+':
-        ergebnis = zahl_1 + zahl_2;
-        break;
-
-    case '-':
-        ergebnis = zahl_1 - zahl_2;
-        break;
-
-    case '*':
-        ergebnis = zahl_1 * zahl_2;
-        break;
-
-    case '/':
-        ergebnis = zahl_1 / zahl_2;
-        break;
-    }
-
-    display->setText(QString::number(ergebnis));
-}
-*/
 
 void MainWindow::button_clear_clicked()
 {

@@ -51,7 +51,6 @@ private:
     void button_equals_clicked();
     void button_clear_clicked();
     void button_decimal_clicked();
-
     void setColor();
 
 public:
@@ -87,6 +86,18 @@ MainWindow::MainWindow()
     button_decimal = new QPushButton(".",this);
     button_color = new QPushButton("Farbpalette");
 
+    QSlider *slider = new QSlider;
+    slider->setMinimum(0);
+    slider->setMaximum(100);
+
+    QDial *dial = new QDial;
+    dial->setMinimum(0);
+    dial->setMaximum(100);
+
+    QSpinBox *spinBox = new QSpinBox;
+    spinBox->setMinimum(0);
+    spinBox->setMaximum(100);
+
     //Layout der Buttons
     layout = new QGridLayout(this);
     layout->addWidget(display, 0, 1, 1, 3);
@@ -108,6 +119,9 @@ MainWindow::MainWindow()
     layout->addWidget(button_equals, 4, 2);
     layout->addWidget(button_add, 4, 3);
     layout->addWidget(button_color, 5, 0);
+    layout->addWidget(slider, 5, 3);
+    layout->addWidget(spinBox, 5, 2);
+    layout->addWidget(dial, 5, 1);
 
     setLayout(layout);
 
@@ -129,8 +143,10 @@ MainWindow::MainWindow()
     connect(button_divide, &QPushButton::clicked, this, &MainWindow::button_divide_clicked);
     connect(button_equals, &QPushButton::clicked, this, &MainWindow::button_equals_clicked);
     connect(button_clear, &QPushButton::clicked, this, &MainWindow::button_clear_clicked);
-
     connect(button_color, &QPushButton::clicked, this, &MainWindow::setColor);
+    connect(slider, cs_mp_cast<int>(&QSlider::valueChanged), dial, &QDial::setValue);
+    connect(spinBox, cs_mp_cast<int>(&QSpinBox::valueChanged), slider, &QSlider::setValue);
+    connect(dial, cs_mp_cast<int>(&QDial::valueChanged), spinBox, &QSpinBox::setValue);
 }
 
 //Funktionen der Buttons
@@ -260,7 +276,6 @@ void MainWindow::button_divide_clicked()
     display->clear();
 }
 
-
 void MainWindow::button_equals_clicked()
 {
     zahl_2 = display->text().toDouble();
@@ -307,7 +322,8 @@ void MainWindow::setColor()
    QColor color;
    color = QColorDialog::getColor(Qt::green, this);
 
-   if (color.isValid()) {
+   if (color.isValid())
+   {
       QPalette tmp = display->palette();
       tmp.setColor(QPalette::Base, color);
 

@@ -25,6 +25,7 @@ private:
     QPushButton *button_equals;
     QPushButton *button_clear;
     QPushButton *button_decimal;
+    QPushButton *button_color;
 
     //Definition der Zahlen und Operationen
     double zahl_1;
@@ -50,6 +51,8 @@ private:
     void button_equals_clicked();
     void button_clear_clicked();
     void button_decimal_clicked();
+
+    void setColor();
 
 public:
     MainWindow();
@@ -82,6 +85,7 @@ MainWindow::MainWindow()
     button_equals = new QPushButton("=",this);
     button_clear = new QPushButton("Löschen",this);
     button_decimal = new QPushButton(".",this);
+    button_color = new QPushButton("Farbpalette");
 
     //Layout der Buttons
     layout = new QGridLayout(this);
@@ -103,6 +107,7 @@ MainWindow::MainWindow()
     layout->addWidget(button_decimal, 4, 1);
     layout->addWidget(button_equals, 4, 2);
     layout->addWidget(button_add, 4, 3);
+    layout->addWidget(button_color, 5, 0);
 
     setLayout(layout);
 
@@ -124,6 +129,8 @@ MainWindow::MainWindow()
     connect(button_divide, &QPushButton::clicked, this, &MainWindow::button_divide_clicked);
     connect(button_equals, &QPushButton::clicked, this, &MainWindow::button_equals_clicked);
     connect(button_clear, &QPushButton::clicked, this, &MainWindow::button_clear_clicked);
+
+    connect(button_color, &QPushButton::clicked, this, &MainWindow::setColor);
 }
 
 //Funktionen der Buttons
@@ -293,6 +300,19 @@ void MainWindow::button_clear_clicked()
     zahl_1 = 0;
     zahl_2 = 0;
     ergebnis = 0;
+}
+
+void MainWindow::setColor()
+{
+   QColor color;
+   color = QColorDialog::getColor(Qt::green, this);
+
+   if (color.isValid()) {
+      QPalette tmp = display->palette();
+      tmp.setColor(QPalette::Base, color);
+
+      display->setPalette(tmp);
+   }
 }
 
 int main(int argc, char *argv[])
